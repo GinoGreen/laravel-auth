@@ -2,6 +2,14 @@
 
 @section('content')
    <div class="container">
+      @if ($errors->any())
+      <div class="alert alert-danger" role="alert">
+         @foreach ($errors->all()
+          as $error)
+            <li>{{ $error }}</li>
+         @endforeach
+      </div>
+      @endif
       <h1>Crea Post</h1>
       <form action="{{ route('admin.post.store') }}" method="POST">
          @csrf
@@ -11,9 +19,14 @@
             <input 
                type="text" 
                placeholder="Inserisci il titolo del post"
-               class="form-control"
                id="title"
                name="title"
+               value="{{ old('title') }}"
+               class="form-control
+                  @error('title')
+                     
+                  @enderror
+               "
             >
          </div>
          <div class="mb-3 form-check">
@@ -23,9 +36,13 @@
                cols="30"
                rows="10"
                placeholder="Inserisci il contentuto del post"
-               class="form-control"
                id="content"
-            ></textarea>
+               class="form-control
+                  @error('')
+                     
+                  @enderror
+               "
+            >{{ old('content') }}</textarea>
          </div>
          <button type="submit" class="btn btn-primary">Submit</button>
          <button type="reset" class="btn btn-secondary">Reset</button>
