@@ -83,9 +83,15 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostPostRequest $request, Post $post)
     {
-        //
+        $form_data = $request->all();
+        if ($form_data['title'] != $post->title) {
+            $form_data['slug'] = Post::generateUniqueSlug($form_data['title']);
+        }
+        $post->update($form_data);
+
+        return redirect()->route('admin.post.show', $post);
     }
 
     /**
