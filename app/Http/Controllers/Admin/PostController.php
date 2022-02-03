@@ -48,7 +48,11 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        if ($post) {
+            return view('admin.posts.show', compact('post'));
+        }
+        abort(404, 'Post non trovato');
     }
 
     /**
