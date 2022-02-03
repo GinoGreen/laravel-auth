@@ -19,7 +19,7 @@
                      <td>{{ $post->title }}</td>
                      <td>
                         <button class="btn btn-primary"><a class="text-dark" href="{{ route('admin.post.show', $post) }}">Show</a></button>
-                        <button class="btn btn-success"><a class="text-white" href="#">Edit</a></button>
+                        <button class="btn btn-success"><a class="text-white" href="{{ route('admin.post.edit') }}">Edit</a></button>
                         <button class="btn btn-danger"></button>
                      </td>
                   </tr>
